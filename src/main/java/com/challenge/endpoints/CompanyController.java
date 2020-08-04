@@ -22,14 +22,14 @@ public class CompanyController {
     return seTemCmpny.isPresent()? ResponseEntity.ok(seTemCmpny.get())
             : ResponseEntity.notFound().build();
     }
-
+    @GetMapping
     public ResponseEntity<List<Company>> findAllCompanyByAccelerationOrUserId(
            @RequestParam(name = "accelerationId",required = false)Long accelerationId,
            @RequestParam(name = "userId",required = false)Long userId
     ){
-    List<Company> cmpnis;
-    cmpnis =companyService.findByAccelerationId(accelerationId);
-    cmpnis.addAll(companyService.findByUserId(userId));
+        List<Company> cmpnis;
+        cmpnis =companyService.findByAccelerationId(accelerationId);
+        cmpnis.addAll(companyService.findByUserId(userId));
 
         return ResponseEntity.ok(cmpnis);
     }
